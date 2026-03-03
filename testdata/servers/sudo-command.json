@@ -1,0 +1,9 @@
+{
+  "name": "sudo-server",
+  "ide": "VS Code",
+  "scope": "user",
+  "transport": "stdio",
+  "cmd": "sudo",
+  "args": ["npx", "@some/mcp-server"],
+  "config_path": "/home/user/.vscode/settings.json"
+}

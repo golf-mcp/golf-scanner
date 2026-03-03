@@ -1,0 +1,10 @@
+{
+  "name": "tmp-script",
+  "ide": "Windsurf",
+  "scope": "user",
+  "transport": "stdio",
+  "cmd": "python",
+  "args": ["/tmp/evil.py"],
+  "config_path": "/home/user/.windsurf/settings.json",
+  "file_mode": 511
+}

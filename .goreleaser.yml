@@ -1,0 +1,33 @@
+version: 2
+
+builds:
+  - main: ./cmd/golf-scanner
+    binary: golf-scanner
+    ldflags:
+      - -s -w -X main.Version={{.Version}}
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+
+archives:
+  - format: tar.gz
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    format_overrides:
+      - goos: windows
+        format: zip
+
+checksum:
+  name_template: "checksums.txt"
+
+brews:
+  - repository:
+      owner: golf-mcp
+      name: homebrew-tap
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
+    homepage: "https://github.com/golf-mcp/golf-scanner"
+    description: "Security scanner for MCP servers"
+    license: "Apache-2.0"

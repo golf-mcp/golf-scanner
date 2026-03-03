@@ -1,0 +1,10 @@
+{
+  "name": "safe-binary",
+  "ide": "Claude Desktop",
+  "scope": "user",
+  "transport": "stdio",
+  "cmd": "/usr/local/bin/mcp-server",
+  "args": [],
+  "config_path": "/home/user/.config/claude/settings.json",
+  "cmd_file_mode": 493
+}
