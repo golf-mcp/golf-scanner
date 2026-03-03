@@ -1,0 +1,9 @@
+{
+  "name": "volume-container",
+  "ide": "VS Code",
+  "scope": "project",
+  "transport": "stdio",
+  "cmd": "docker",
+  "args": ["run", "-v", "/:/host", "-v", "/var/run/docker.sock:/var/run/docker.sock", "-v", "/home/user/.ssh:/root/.ssh", "myimage"],
+  "config_path": "/home/user/project/.vscode/mcp.json"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "writable-binary",
+  "ide": "VS Code",
+  "scope": "user",
+  "transport": "stdio",
+  "cmd": "/usr/local/bin/mcp-writable",
+  "args": [],
+  "config_path": "/home/user/.vscode/settings.json",
+  "cmd_file_mode": 511
+}

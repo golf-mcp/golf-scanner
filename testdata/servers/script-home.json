@@ -1,0 +1,10 @@
+{
+  "name": "home-script",
+  "ide": "Gemini",
+  "scope": "user",
+  "transport": "stdio",
+  "cmd": "python",
+  "args": ["/home/user/scripts/server.py"],
+  "config_path": "/home/user/.gemini/settings.json",
+  "file_mode": 493
+}

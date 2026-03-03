@@ -1,0 +1,9 @@
+{
+  "name": "server-github",
+  "ide": "Claude Desktop",
+  "scope": "user",
+  "transport": "stdio",
+  "cmd": "npx",
+  "args": ["@modelcontextprotocol/server-github"],
+  "config_path": "/home/user/.config/claude/settings.json"
+}

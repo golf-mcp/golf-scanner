@@ -1,0 +1,8 @@
+{
+  "name": "local-server",
+  "ide": "Cursor",
+  "scope": "project",
+  "transport": "http",
+  "host": "http://localhost:3000",
+  "config_path": "/home/user/project/.cursor/mcp.json"
+}

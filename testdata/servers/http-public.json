@@ -1,0 +1,8 @@
+{
+  "name": "public-api",
+  "ide": "Claude Desktop",
+  "scope": "user",
+  "transport": "http",
+  "host": "https://api.example.com/mcp",
+  "config_path": "/home/user/.config/claude/settings.json"
+}

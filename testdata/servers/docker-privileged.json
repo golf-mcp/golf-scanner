@@ -1,0 +1,9 @@
+{
+  "name": "privileged-container",
+  "ide": "Cursor",
+  "scope": "project",
+  "transport": "stdio",
+  "cmd": "docker",
+  "args": ["run", "--privileged", "--cap-add", "SYS_ADMIN", "myimage"],
+  "config_path": "/home/user/project/.cursor/mcp.json"
+}
