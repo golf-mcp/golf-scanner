@@ -109,35 +109,28 @@ golf-scanner audit --fail-on high --json
 
 ## Security Checks
 
-### Tier 1 — Offline (9 checks)
-
-| Check | What It Detects |
-|-------|-----------------|
-| Server Type Detection | Classifies servers (package manager, container, binary, script, HTTP) |
-| Command Safety | 22 dangerous patterns: sudo, shell injection, network downloads, eval/exec |
-| Credentials | Plaintext API keys (AWS, GitHub, Stripe, OpenAI, Anthropic), tokens, URL credentials |
-| Script Location | Scripts in `/tmp` (critical), home directories (medium) |
-| Script Permissions | World-writable scripts (critical) |
-| Binary Location | Binaries in temp dirs (critical), unknown locations (high) |
-| Binary Permissions | World-writable (critical) or group-writable (high) binaries |
-| Container Isolation | `--privileged`, dangerous capabilities, host namespace sharing |
-| Container Volumes | Dangerous mounts: root filesystem, Docker socket, SSH keys, AWS credentials |
-
-### Tier 2 — Online (11 checks, skipped with `--offline`)
-
-| Check | What It Detects |
-|-------|-----------------|
-| Registry Listing | Whether the server is in the official MCP Registry |
-| Vulnerabilities | Known CVEs and malware via OSV.dev |
-| Typosquatting | Similarly-named packages that could be malicious |
-| Distribution | Low adoption signals (download count, package age) |
-| Source Repository | Missing or unlinked source repository |
-| Unscoped Variant | Malware in unscoped npm package variants |
-| GitHub Trust | Archived repos, inactivity, no license, low stars, single contributor |
-| Container Image | Missing digest pinning, Sigstore attestations |
-| Container Registry | Image existence verification, digest tampering detection |
-| Container Signature | Cosign signature verification in OCI registries |
-| OAuth | Authentication presence and endpoint security for HTTP/SSE servers |
+| Check | What It Detects | Online |
+|-------|-----------------|--------|
+| Server Type | Classifies the server as package manager, container, binary, script, or HTTP | |
+| Command Safety | Identifies risky patterns including privilege escalation and shell injection threats | |
+| Credentials | Finds plaintext credentials in args, URLs, and environment variables | |
+| Script Location | Flags scripts running from unsafe locations like `/tmp` or home directories | |
+| Script Permissions | Detects world-writable script files | |
+| Binary Location | Assesses executable placement across system paths and home directories | |
+| Binary Permissions | Detects world-writable or group-writable binaries | |
+| Container Isolation | Flags `--privileged` mode, dangerous capabilities, host namespace sharing | |
+| Container Volumes | Flags dangerous volume mounts — root filesystem, `/etc`, Docker socket | |
+| Registry Listing | Confirms MCP Registry inclusion status | Yes |
+| Vulnerabilities | Queries OSV.dev for known CVEs and malware in npm/PyPI packages | Yes |
+| Typosquatting | Identifies similarly-named packages suggesting malicious imitation | Yes |
+| Distribution | Evaluates adoption through download metrics and package age | Yes |
+| Source Repository | Checks whether the package links to a source repository | Yes |
+| Unscoped Variant | Examines unscoped npm counterparts for security issues | Yes |
+| GitHub Trust | Evaluates repository signals like activity, licensing, and contributor count | Yes |
+| Container Image | Checks whether images use digest pinning (`@sha256:`) | Yes |
+| Container Registry | Validates image presence and flags potential tampering via digest mismatch | Yes |
+| Container Signature | Verifies cosign signatures with keyless authentication | Yes |
+| OAuth | Discovers OAuth/OIDC configuration. Flags missing authentication | Yes |
 
 For full details on each check, see the [Security Checks reference](https://docs.golf.dev/scanner/security-checks).
 
@@ -172,19 +165,22 @@ No token is needed for most scans. The scanner makes ~3 GitHub API calls per uni
 
 ## Golf
 
-**Golf Scanner finds what's running. [Golf](https://golf.dev) governs it.**
+**Scanner = visibility** (what exists). **[Golf](https://golf.dev) = governance** (what's allowed, logged, and protected).
 
-Golf Scanner gives you a point-in-time inventory. But your auditor will ask: *who approved these connections? What data flowed through them? Can you prove compliance?*
+Golf Scanner gives you a point-in-time snapshot. The full Golf platform extends that into continuous governance:
 
-Golf is the governance platform for MCP. It discovers every server across your org, logs every connection with full provenance, and enforces your policies — so you're always audit-ready.
+- **Golf Inventory** — continuous MCP discovery, always up to date, not a point-in-time scan
+- **Golf Gateway** — policy enforcement per server, per team, per data type. PII redaction and tool-level access controls
+- **Audit Trail** — immutable logs of every connection, pre-mapped to SOC 2, ISO 27001, NIST AI RMF
+- **Multi-Tool Support** — works with every AI tool (Cursor, Claude Code, Copilot, ChatGPT) without changing developer workflows
 
 | | Golf Scanner (Free) | Golf |
 |---|-------------------|------|
-| **Discovery** | 7 IDEs, single machine | Fleet-wide — every IDE, every machine, every team |
-| **Security checks** | 9 offline + 11 online | All checks + LLM-powered threat detection |
-| **Audit trail** | CLI output | 90-day immutable trail, pre-mapped to SOC 2, ISO 27001, NIST AI RMF |
-| **Enforcement** | None | PII redaction, RBAC, approval workflows for high-risk actions |
-| **Monitoring** | One-time scan | Continuous — new servers detected immediately |
+| **Discovery** | 7 IDEs, single machine, point-in-time | Continuous — every IDE, every machine, every team |
+| **Security checks** | 9 offline + 11 online | All scanner checks + additional threat detection |
+| **Audit trail** | CLI output | Immutable trail, pre-mapped to SOC 2, ISO 27001, NIST AI RMF |
+| **Enforcement** | None | Policy enforcement per server/team/data type, PII redaction, tool-level access controls |
+| **Monitoring** | One-time scan | Always up to date — new servers detected immediately |
 | **Deployment** | Single binary | On-prem, hybrid, or cloud. Data never leaves your environment. |
 
 Learn more at [golf.dev](https://golf.dev) or read the [documentation](https://docs.golf.dev/gateway/overview).
