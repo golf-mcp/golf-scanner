@@ -28,6 +28,11 @@ brews:
       owner: golf-mcp
       name: homebrew-tap
       token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
+      pull_request:
+        enabled: true
+    commit_author:
+      name: github-actions[bot]
+      email: github-actions[bot]@users.noreply.github.com
     homepage: "https://github.com/golf-mcp/golf-scanner"
     description: "Security scanner for MCP servers"
     license: "Apache-2.0"
