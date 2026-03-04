@@ -26,12 +26,18 @@ checksum:
   name_template: "checksums.txt"
 
 homebrew_casks:
-  - repository:
+  - binaries:
+      - golf-scanner
+    repository:
       owner: golf-mcp
       name: homebrew-tap
       token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
       pull_request:
         enabled: true
+        base:
+          owner: golf-mcp
+          name: homebrew-tap
+          branch: main
     commit_author:
       name: github-actions[bot]
       email: github-actions[bot]@users.noreply.github.com
