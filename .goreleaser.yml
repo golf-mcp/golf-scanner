@@ -31,13 +31,8 @@ homebrew_casks:
     repository:
       owner: golf-mcp
       name: homebrew-tap
+      branch: "goreleaser/{{.ProjectName}}-{{.Version}}"
       token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
-      pull_request:
-        enabled: true
-        base:
-          owner: golf-mcp
-          name: homebrew-tap
-          branch: main
     commit_author:
       name: github-actions[bot]
       email: github-actions[bot]@users.noreply.github.com
