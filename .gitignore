@@ -1,5 +1,5 @@
 # Compiled binary
-golf-scanner
+/golf-scanner
 
 # Go build artifacts
 *.exe
