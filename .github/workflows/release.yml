@@ -28,15 +28,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           HOMEBREW_TAP_GITHUB_TOKEN: ${{ secrets.HOMEBREW_TAP_GITHUB_TOKEN }}
 
-      - name: Auto-merge Homebrew tap PR
+      - name: Create and merge Homebrew tap PR
         env:
           GH_TOKEN: ${{ secrets.HOMEBREW_TAP_GITHUB_TOKEN }}
         run: |
-          # Find the PR goreleaser just created
-          PR_URL=$(gh pr list --repo golf-mcp/homebrew-tap --author "github-actions[bot]" --search "golf-scanner" --json url --jq '.[0].url' 2>/dev/null || true)
-          if [[ -n "$PR_URL" ]]; then
-            echo "Found Homebrew tap PR: $PR_URL"
-            gh pr merge "$PR_URL" --repo golf-mcp/homebrew-tap --merge --auto
-          else
-            echo "No Homebrew tap PR found — may have been pushed directly"
-          fi
+          TAG="${GITHUB_REF#refs/tags/}"
+          VERSION="${TAG#v}"
+          BRANCH="goreleaser/golf-scanner-${VERSION}"
+          PR_URL=$(gh pr create --repo golf-mcp/homebrew-tap \
+            --base main --head "${BRANCH}" \
+            --title "chore: update golf-scanner to ${TAG}" \
+            --body "Automated update from GoReleaser release workflow.")
+          echo "Created Homebrew tap PR: $PR_URL"
+          gh pr merge "$PR_URL" --repo golf-mcp/homebrew-tap --squash --admin
