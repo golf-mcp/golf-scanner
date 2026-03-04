@@ -32,11 +32,12 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.HOMEBREW_TAP_GITHUB_TOKEN }}
         run: |
-          VERSION="${GITHUB_REF#refs/tags/}"
+          TAG="${GITHUB_REF#refs/tags/}"
+          VERSION="${TAG#v}"
           BRANCH="goreleaser/golf-scanner-${VERSION}"
           PR_URL=$(gh pr create --repo golf-mcp/homebrew-tap \
             --base main --head "${BRANCH}" \
-            --title "chore: update golf-scanner to ${VERSION}" \
+            --title "chore: update golf-scanner to ${TAG}" \
             --body "Automated update from GoReleaser release workflow.")
           echo "Created Homebrew tap PR: $PR_URL"
           gh pr merge "$PR_URL" --repo golf-mcp/homebrew-tap --merge --admin
