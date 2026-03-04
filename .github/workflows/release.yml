@@ -40,4 +40,4 @@ jobs:
             --title "chore: update golf-scanner to ${TAG}" \
             --body "Automated update from GoReleaser release workflow.")
           echo "Created Homebrew tap PR: $PR_URL"
-          gh pr merge "$PR_URL" --repo golf-mcp/homebrew-tap --merge --admin
+          gh pr merge "$PR_URL" --repo golf-mcp/homebrew-tap --squash --admin
