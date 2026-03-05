@@ -163,28 +163,6 @@ No token is needed for most scans. The scanner makes ~3 GitHub API calls per uni
 | 1 | No args, unknown command, `--fail-on` threshold exceeded, or flag conflict |
 | 2 | JSON error or invalid `--fail-on` value |
 
-## Golf
-
-**Scanner = visibility** (what exists). **[Golf](https://golf.dev) = governance** (what's allowed, logged, and protected).
-
-Golf Scanner gives you a point-in-time snapshot. The full Golf platform extends that into continuous governance:
-
-- **Golf Inventory** — continuous MCP discovery, always up to date, not a point-in-time scan
-- **Golf Gateway** — policy enforcement per server, per team, per data type. PII redaction and tool-level access controls
-- **Audit Trail** — immutable logs of every connection, pre-mapped to SOC 2, ISO 27001, NIST AI RMF
-- **Multi-Tool Support** — works with every AI tool (Cursor, Claude Code, Copilot, ChatGPT) without changing developer workflows
-
-| | Golf Scanner (Free) | Golf |
-|---|-------------------|------|
-| **Discovery** | 7 IDEs, single machine, point-in-time | Continuous — every IDE, every machine, every team |
-| **Security checks** | 9 offline + 11 online | All scanner checks + additional threat detection |
-| **Audit trail** | CLI output | Immutable trail, pre-mapped to SOC 2, ISO 27001, NIST AI RMF |
-| **Enforcement** | None | Policy enforcement per server/team/data type, PII redaction, tool-level access controls |
-| **Monitoring** | One-time scan | Always up to date — new servers detected immediately |
-| **Deployment** | Single binary | On-prem, hybrid, or cloud. Data never leaves your environment. |
-
-Learn more at [golf.dev](https://golf.dev) or read the [documentation](https://docs.golf.dev/gateway/overview).
-
 ## License
 
 Apache 2.0 — see [LICENSE](LICENSE).
